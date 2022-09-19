@@ -6,15 +6,15 @@ import { useRoute } from '@react-navigation/native';
     
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     
   },
     tinyLogo: {
-      width: 300,
-      height: 150,
+      width: 100,
+      height: 100,
     },
     logo: {
       width: 66,
@@ -32,6 +32,14 @@ const styles = StyleSheet.create({
       fontWeight: "200",
       padding: 10
       
+    },
+    title1: {
+      
+      fontSize: 30,
+      padding:70,
+      alignItems: 'center',
+      justifyContent: 'center',
+      
     }
   });
 
@@ -42,6 +50,7 @@ export default function App2() {
     const [temperature, setTemperature] = useState([]);
     const [precip, setPrecip] = useState([]);
     const [wind_speed, setWind_speed] = useState([]);
+    const [weather_icons, setWeather_icons] = useState([]);
     
 
     
@@ -55,7 +64,7 @@ export default function App2() {
         .then((response) => response.json())
         .then((data) => {
             setCapital(capital);
-            // setWeather_icons(data[0]["weather_icons"]["png"])
+            setWeather_icons(data['current']['weather_icons'][0])
             setTemperature(data['current']['temperature']);
             setPrecip(data['current']['precip']);
             setWind_speed(data['current']['wind_speed']);
@@ -70,19 +79,10 @@ export default function App2() {
     return (
       <View style ={styles.container}>
         
-        {/* <TextInput
-            style={styles.input}
-            placeholder="Enter Capital Name"
-            onChangeText={(text) => setCapital(text)}
-        /> */}
-        {/* <Button 
-          title="Submit"
-          color='#00008b'
-          onPress={fetchCapital} /> */}
+        <Text style={styles.title1}>Weather Details</Text>
         
-        {/* <Image style={styles.tinyLogo}  source={{ uri:String(weather_icons+' '), }} /> */}
+        <Image style={styles.tinyLogo}  source={{ uri:String(weather_icons+' '), }} />
 
-        
         
         <Text style={styles.title}>Temperature : {temperature}  deg c</Text>
         

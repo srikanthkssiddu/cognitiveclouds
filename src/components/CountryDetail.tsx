@@ -75,23 +75,15 @@ export default function App1() {
     return (
         <View style ={styles.container}>
         
-        {/* <TextInput
-            style={styles.input}
-            placeholder="Enter Country Name"
-            onChangeText={(text) => setCountry(text)}
-        /> */}
-        {/* <Button 
-          title="Submit"
-          color='#00008b'
-          onPress={fetchCountries} /> */}
+        
 
         <Text style={styles.title}>Country Details</Text>
         
         <Image style={styles.tinyLogo}  source={{ uri:String(Flag+' '), }} />
         
-        <Text style={styles.title}>Capital : {countries}</Text>
+        <Text style={styles.title}> {countries}</Text>
         
-        <Text style={styles.title}>Country's Population : {Pop}</Text>
+        <Text style={styles.title}>Country Population : {Pop} </Text>
         
         <Text style={styles.title}>Latitude : {lat[0]} deg</Text>
         
