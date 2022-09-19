@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
@@ -50,7 +50,7 @@ export default function App2() {
 
     
     const fetchCapital = () => {
-        var url = "http://api.weatherstack.com/current?access_key=60774ad1b455f3cff7d3f8a273f488f5&query=" + String(capital)
+        var url = "http://api.weatherstack.com/current?access_key=60774ad1b455f3cff7d3f8a273f488f5&query=" + String(route.params.paramsKey)
         fetch(url)
         .then((response) => response.json())
         .then((data) => {
@@ -63,23 +63,26 @@ export default function App2() {
         });
         
     };
+    useEffect(() => {
+      fetchCapital();
+    }, [])
     
     return (
       <View style ={styles.container}>
         
-        <TextInput
+        {/* <TextInput
             style={styles.input}
             placeholder="Enter Capital Name"
             onChangeText={(text) => setCapital(text)}
-        />
-        <Button 
+        /> */}
+        {/* <Button 
           title="Submit"
           color='#00008b'
-          onPress={fetchCapital} />
+          onPress={fetchCapital} /> */}
         
         {/* <Image style={styles.tinyLogo}  source={{ uri:String(weather_icons+' '), }} /> */}
 
-        <Text style={styles.title}>Capital : {capital}</Text>
+        
         
         <Text style={styles.title}>Temperature : {temperature}  deg c</Text>
         

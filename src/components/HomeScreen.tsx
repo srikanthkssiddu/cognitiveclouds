@@ -8,7 +8,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const getCuntryName = () => {
     navigation.navigate('CountryDetail', {
-      CountryName,
+      paramsKey:CountryName,
     });
   };
  

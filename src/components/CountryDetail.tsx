@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from "@react-navigation/native";
@@ -50,37 +50,40 @@ export default function App1() {
     const navigation = useNavigation();
     const getCapitalWeather = () => {
       navigation.navigate('CapitalDetail', {
-        country,
+        paramsKey:countries,
       });
     };
 
     
     const fetchCountries = () => {
-        var url = "https://restcountries.com/v3.1/name/" + String(country)
+        var url = "https://restcountries.com/v3.1/name/" + String(route.params.paramsKey)
         fetch(url)
         .then((response) => response.json())
         .then((data) => {
             setCountries(data[0]["capital"]);
             setFlag(data[0]["flags"]["png"])
             setPop(data[0]["population"])
-            setLat(data[1]["latlng"])
+            setLat(data[0]["latlng"])
             
         });
         
     };
+    useEffect(() => {
+      fetchCountries();
+    }, [])
     
     return (
         <View style ={styles.container}>
         
-        <TextInput
+        {/* <TextInput
             style={styles.input}
             placeholder="Enter Country Name"
             onChangeText={(text) => setCountry(text)}
-        />
-        <Button 
+        /> */}
+        {/* <Button 
           title="Submit"
           color='#00008b'
-          onPress={fetchCountries} />
+          onPress={fetchCountries} /> */}
 
         <Text style={styles.title}>Country Details</Text>
         
